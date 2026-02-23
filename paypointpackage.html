@@ -287,7 +287,7 @@
             <div class="md:w-1/2">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">ติดต่อ PAYPOINTSERVICE</h2>
                 <p class="text-slate-600 mb-8">
-                    สามารถแวะเข้ามาชมเครื่อง POS จริง ทดลองใช้งานระบบ และปรึกษาได้ที่สำนักงานของเรา
+                    มาคุยกัน ดูกล่องก่อน
                 </p>
                 
                 <div class="space-y-6">
@@ -336,7 +336,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-slate-500 py-8 px-4 text-center text-sm border-t border-slate-800">
+    <footer class="bg-black text-slate-500 py-8 px-4 text-center text-sm border-t border-slate-800 relative z-10">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© 2026 PAYPOINTSERVICE. All rights reserved.</p>
             <div class="flex gap-4 justify-center">
@@ -346,8 +346,205 @@
         </div>
     </footer>
 
+    <!-- AI Chatbot (Floating) -->
+    <div id="ai-chat-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Chat Window (ซ่อนไว้ตอนเริ่มต้น) -->
+        <div id="ai-chat-window" class="hidden w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-slate-200 mb-4 overflow-hidden flex-col transition-all duration-300 origin-bottom-right transform scale-95 opacity-0">
+            <!-- Header -->
+            <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <i data-lucide="bot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">น้อง PayPoint AI</h4>
+                        <p class="text-xs text-blue-200">พร้อมให้คำปรึกษาตลอด 24 ชม.</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-blue-200 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="h-80 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3">
+                <!-- AI Message -->
+                <div class="flex gap-2 w-3/4">
+                    <div class="bg-blue-100 text-blue-600 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-slate-700 border border-slate-100">
+                        สวัสดีครับ! สนใจแพ็คเกจไหน หรืออยากให้แนะนำชุดที่เหมาะกับร้านของคุณ พิมพ์ถามได้เลยครับ 😊
+                    </div>
+                </div>
+                <!-- Quick Options -->
+                <div class="flex flex-wrap gap-2 ml-10">
+                    <button onclick="sendQuickReply('แนะนำชุดสำหรับผู้เริ่มต้นหน่อย')" class="bg-white border border-blue-200 text-blue-600 text-xs py-1.5 px-3 rounded-full hover:bg-blue-50 transition">
+                        แนะนำชุดผู้เริ่มต้น
+                    </button>
+                    <button onclick="sendQuickReply('ชุด POS ที่มีลิ้นชักราคาเท่าไหร่?')" class="bg-white border border-blue-200 text-blue-600 text-xs py-1.5 px-3 rounded-full hover:bg-blue-50 transition">
+                        ชุด POS พร้อมลิ้นชัก
+                    </button>
+                    <button onclick="sendQuickReply('ติดต่อแอดมิน')" class="bg-white border border-blue-200 text-blue-600 text-xs py-1.5 px-3 rounded-full hover:bg-blue-50 transition">
+                        ติดต่อแอดมิน
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 bg-white border-t border-slate-200 flex gap-2">
+                <input type="text" id="chat-input" placeholder="พิมพ์ข้อความที่นี่..." class="flex-1 bg-slate-100 border-none rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" onkeypress="handleEnter(event)">
+                <button onclick="sendMessage()" class="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition flex items-center justify-center w-10 h-10 flex-shrink-0">
+                    <i data-lucide="send" class="w-4 h-4 ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Button -->
+        <button onclick="toggleChat()" class="bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg shadow-blue-300 flex items-center justify-center hover:scale-110 transition-transform hover:bg-blue-700">
+            <i data-lucide="message-square" class="w-6 h-6"></i>
+            <!-- Notification Dot -->
+            <span class="absolute top-0 right-0 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500 border-2 border-white"></span>
+            </span>
+        </button>
+    </div>
+
     <script>
         lucide.createIcons();
+
+        // Chatbot Logic
+        const chatWindow = document.getElementById('ai-chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        let isOpen = false;
+
+        function toggleChat() {
+            isOpen = !isOpen;
+            if (isOpen) {
+                chatWindow.classList.remove('hidden');
+                // Small delay to allow display:block to apply before animating opacity/transform
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                    chatInput.focus();
+                }, 10);
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                // Wait for transition to finish before hiding
+                setTimeout(() => {
+                    chatWindow.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickReply(text) {
+            chatInput.value = text;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add User Message
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            // Simulate AI Thinking
+            setTimeout(() => {
+                showTypingIndicator();
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    generateAIResponse(text);
+                }, 1500); // จำลองเวลา AI คิด 1.5 วิ
+            }, 300);
+        }
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            
+            if (sender === 'user') {
+                div.className = 'flex gap-2 w-3/4 self-end justify-end';
+                div.innerHTML = `
+                    <div class="bg-blue-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                div.className = 'flex gap-2 w-3/4';
+                div.innerHTML = `
+                    <div class="bg-blue-100 text-blue-600 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-slate-700 border border-slate-100 leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(div);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight; // เลื่อนลงล่างสุด
+        }
+
+        function showTypingIndicator() {
+            const div = document.createElement('div');
+            div.id = 'typing-indicator';
+            div.className = 'flex gap-2 w-3/4';
+            div.innerHTML = `
+                <div class="bg-blue-100 text-blue-600 p-2 rounded-full h-8 w-8 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm flex gap-1 items-center border border-slate-100">
+                    <div class="w-2 h-2 bg-slate-300 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-slate-300 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-slate-300 rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+                </div>
+            `;
+            chatMessages.appendChild(div);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        // AI Response Logic (จำลองคำตอบ)
+        function generateAIResponse(userInput) {
+            const input = userInput.toLowerCase();
+            let response = '';
+
+            if (input.includes('เริ่มต้น') || input.includes('ถูก')) {
+                response = 'สำหรับผู้เริ่มต้น ขอแนะนำ <strong>แพ็คเกจ 999.-</strong> ครับ เป็นชุดสุดคุ้มสำหรับทดลองระบบ หรือ <strong>แพ็คเกจ 1,890.-</strong> ที่เหมาะกับร้านมินิมาร์ทขนาดเล็กครับ ต้องการดูรายละเอียดเพิ่มเติมไหมครับ?';
+            } 
+            else if (input.includes('ลิ้นชัก') || input.includes('pos')) {
+                response = 'ชุด POS ที่มีลิ้นชักเก็บเงินจะเริ่มต้นที่ <strong>แพ็คเกจ 4,900.- (ชุดอัจฉริยะ M)</strong> ครับ หน้าจอใหญ่ ใช้งานง่าย จัดการหน้าร้านได้ครบเลยครับ 💻';
+            }
+            else if (input.includes('แพง') || input.includes('ใหญ่')) {
+                response = 'สำหรับร้านขนาดใหญ่ หรือต้องการแบบครบวงจร ขอแนะนำ <strong>แพ็คเกจ 9,990.-</strong> (สเปคสูง ทำงานเร็ว) หรือถ้าเป็นตู้ KIOSK ให้ลูกค้ากดเอง จะเป็นชุด <strong>59,990.-</strong> ครับ';
+            }
+            else if (input.includes('ติดต่อ') || input.includes('แอดมิน') || input.includes('คน')) {
+                response = 'สามารถติดต่อทีมงานเพื่อพูดคุยรายละเอียดได้ที่<br>📞 086-888-3656<br>📱 Line: <a href="https://lin.ee/63tTe6Z" target="_blank" class="text-blue-600 font-bold hover:underline">@ao22 คลิกที่นี่</a> ได้เลยครับ';
+            }
+            else {
+                response = 'ขอบคุณที่สนใจครับ 😊 เพื่อข้อมูลที่ถูกต้องที่สุด รบกวนทักสอบถามทีมงานโดยตรงผ่าน Line <a href="https://lin.ee/63tTe6Z" target="_blank" class="text-blue-600 font-bold hover:underline">@ao22</a> หรือโทร 086-888-3656 ได้เลยนะครับ';
+            }
+
+            addMessage(response, 'ai');
+        }
     </script>
 </body>
 </html>
