@@ -1,0 +1,329 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ExternalLink, MessageCircle, Phone, Search, X, ChevronRight, 
+  LayoutGrid, MapPin, ChevronDown, ChevronUp, HelpCircle, 
+  Facebook, BookOpen, ShieldCheck, CheckCircle2, ArrowRight,
+  ClipboardList, UserPlus, Send
+} from 'lucide-react';
+
+// รายชื่อไฟล์ภาพจาก GitHub
+const PACKAGE_IMAGES = [
+  { id: 1, file: '0.jpg', label: 'โปรโมชันพิเศษ' },
+  { id: 2, file: '987.jpg', label: 'Package 987.-' },
+  { id: 3, file: '990.jpg', label: 'Package 990.-' },
+  { id: 4, file: '999.jpg', label: 'Package 999.-' },
+  { id: 5, file: '1890.jpg', label: 'Package 1,890.-' },
+  { id: 6, file: '1990.jpg', label: 'Package 1,990.-' },
+  { id: 7, file: '2600.jpg', label: 'Package 2,600.-' },
+  { id: 8, file: '3000.jpg', label: 'Package 3,000.-' },
+  { id: 9, file: '3900.jpg', label: 'Package 3,900.-' },
+  { id: 10, file: '4900.jpg', label: 'Package 4,900.-' },
+  { id: 11, file: '6999.jpg', label: 'Package 6,999.-' },
+  { id: 12, file: '9990.jpg', label: 'Package 9,990.-' },
+  { id: 13, file: '28990.jpg', label: 'Package 28,990.-' },
+  { id: 14, file: '59990.jpg', label: 'Package 59,990.-' },
+];
+
+const ARTICLES = [
+  { id: 1, title: "5 เหตุผลทำไม 'แฟรนไชส์ไปรษณีย์' คือธุรกิจดาวรุ่งปี 2026", desc: "เจาะลึกสถิติอีคอมเมิร์ซที่เติบโตไม่หยุด และทำไมการเปิดจุดรับส่งพัสดุถึงเป็นทางเลือกที่ดีที่สุดในยุคนี้", category: "ธุรกิจ & การลงทุน", date: "15 Feb 2026" },
+  { id: 2, title: "เปิดร้านรับส่งพัสดุอย่างไรให้คืนทุนไวภายใน 3 เดือน", desc: "แชร์เทคนิคการเลือกทำเล และการทำโปรโมชั่นหน้าร้านเพื่อดึงดูดลูกค้าในชุมชนให้มาใช้บริการซ้ำ", category: "เทคนิคการขาย", date: "10 Feb 2026" },
+  { id: 3, title: "รวมทุกบริการในที่เดียว: จุดเด่นของระบบ Paypoint Service", desc: "ไม่ใช่แค่ส่งพัสดุ แต่รวมถึงการจ่ายบิล เติมเงิน และบริการออนไลน์ที่สร้างรายได้เสริมแบบ Passive Income", category: "ความรู้ระบบ", date: "05 Feb 2026" },
+  { id: 4, title: "เปรียบเทียบค่าส่งขนส่งทุกค่าย Kerry, Flash, J&T เลือกอันไหนดี?", desc: "วิเคราะห์จุดเด่นของแต่ละค่ายขนส่ง เพื่อให้เจ้าของร้านแนะนำลูกค้าได้อย่างมืออาชีพและได้กำไรสูงสุด", category: "บริการขนส่ง", date: "01 Feb 2026" },
+  { id: 5, title: "วิธีเปลี่ยน 'หน้าบ้าน' ให้เป็น 'หน้าเงิน' ด้วยงบหลักพัน", desc: "เริ่มต้นธุรกิจจากพื้นที่ว่างในบ้านด้วยแพ็กเกจเริ่มต้นจาก Paypoint ไม่ต้องเสียค่าเช่าที่ก็รวยได้", category: "อาชีพเสริม", date: "28 Jan 2026" },
+  { id: 6, title: "เช็คลิสต์อุปกรณ์ที่ต้องมี ก่อนเปิดร้านรับส่งพัสดุออนไลน์", desc: "เตรียมความพร้อมก่อนเปิดร้านจริง ต้องมีอะไรบ้าง ตั้งแต่เครื่องพิมพ์ความร้อนไปจนถึงป้ายหน้าร้าน", category: "คู่มือผู้เริ่มต้น", date: "20 Jan 2026" }
+];
+
+const GITHUB_BASE_URL = "https://raw.githubusercontent.com/myself2026/paypoint/main/";
+const LOGO_URL = "https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/logo-paypoint-1.png";
+const LINE_URL = "https://lin.ee/63tTe6Z";
+const FACEBOOK_URL = "https://www.facebook.com/paypointservice";
+const REGISTER_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform";
+
+const FAQS = [
+  { q: "เปิดร้านต้องมีหน้าร้านไหม?", a: "ไม่จำเป็นครับ สามารถเปิดให้บริการในบ้าน อาคารพาณิชย์ หรือเคาน์เตอร์เดิมที่มีอยู่แล้วได้เลย" },
+  { q: "มีค่าธรรมเนียมรายเดือนหรือรายปีไหม?", a: "ไม่มีครับ เราเป็นระบบจ่ายครั้งเดียวจบ ไม่มีค่าธรรมเนียมรายปีหรือส่วนแบ่งยอดขาย" },
+  { q: "รองรับการขนส่งค่ายไหนบ้าง?", a: "รองรับค่ายขนส่งชั้นนำทั่วไทย เช่น ไปรษณีย์ไทย, Kerry, Flash, J&T, Best Express และอื่นๆ" },
+  { q: "ถ้าใช้งานไม่เป็น มีสอนไหม?", a: "เรามีทีมงานสอนการใช้งานจนกว่าจะทำเป็น และมีทีมซัพพอร์ตดูแลตลอดการใช้งานครับ" }
+];
+
+export default function App() {
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [openFaq, setOpenFaq] = useState(null);
+  const [showPDPA, setShowPDPA] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPDPA(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const filteredPackages = PACKAGE_IMAGES.filter(pkg => 
+    pkg.label.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    pkg.file.includes(searchTerm)
+  );
+
+  return (
+    <div className="min-h-screen bg-white font-sans text-gray-900 scroll-smooth">
+      {/* Header */}
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <img src={LOGO_URL} alt="Paypoint Logo" className="h-10 md:h-12 w-auto object-contain cursor-pointer" onClick={() => window.scrollTo(0,0)} />
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#packages" className="text-sm font-semibold text-gray-600 hover:text-red-600 transition-all">แพ็กเกจ</a>
+              <a href="#register" className="text-sm font-semibold text-gray-600 hover:text-red-600 transition-all">ขั้นตอนสมัคร</a>
+              <a href="#articles" className="text-sm font-semibold text-gray-600 hover:text-red-600 transition-all">บทความ</a>
+              <a href={REGISTER_FORM_URL} target="_blank" className="bg-yellow-400 text-red-900 px-6 py-2.5 rounded-full text-sm font-black hover:bg-yellow-500 shadow-lg shadow-yellow-100 active:scale-95 transition-all flex items-center gap-2">
+                <ClipboardList className="w-4 h-4" /> สมัครแฟรนไชส์
+              </a>
+            </div>
+            <a href={LINE_URL} target="_blank" className="md:hidden bg-green-500 text-white p-2.5 rounded-full shadow-lg">
+              <MessageCircle className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 py-24 px-4 text-center text-white overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 bg-yellow-400/20 text-yellow-300 px-4 py-1.5 rounded-full text-sm font-bold mb-6 border border-yellow-400/30">
+            <CheckCircle2 className="w-4 h-4" /> ธุรกิจจุดรับส่งพัสดุ อันดับ 1
+          </div>
+          <h1 className="text-4xl md:text-7xl font-black mb-6 leading-[1.1] tracking-tight">
+            เริ่มต้นธุรกิจ <br/> <span className="text-yellow-300 italic">Paypoint Service</span>
+          </h1>
+          <p className="text-red-50 text-lg md:text-xl mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed">
+            ลงทุนน้อย กำไรดี คืนทุนไว พร้อมระบบขนส่งครบวงจร 
+            เปลี่ยนบ้านของคุณให้เป็นธุรกิจสร้างรายได้ 24 ชั่วโมง
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+            <a href={REGISTER_FORM_URL} target="_blank" className="w-full sm:w-fit bg-yellow-400 text-red-900 px-10 py-5 rounded-2xl text-xl font-black hover:bg-yellow-500 transition-all shadow-2xl shadow-yellow-400/20 flex items-center justify-center gap-3 active:scale-95">
+              <UserPlus className="w-6 h-6" /> สมัครตอนนี้เลย
+            </a>
+            <a href={LINE_URL} target="_blank" className="w-full sm:w-fit bg-white/10 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:bg-white/20 transition-all border border-white/20 flex items-center justify-center gap-3">
+              <MessageCircle className="w-6 h-6" /> ปรึกษาทาง LINE
+            </a>
+          </div>
+          <div className="relative max-w-xl mx-auto group">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-red-600 transition-colors" />
+            <input 
+              type="text" 
+              placeholder="ค้นหาราคาแพ็กเกจที่ต้องการ..."
+              className="w-full pl-16 pr-6 py-5 rounded-2xl border-none shadow-2xl text-gray-800 focus:ring-4 focus:ring-yellow-400/50 transition-all outline-none text-lg font-medium"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Packages Section */}
+      <section id="packages" className="max-w-7xl mx-auto px-4 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Choose Your Package</h2>
+          <div className="w-20 h-1.5 bg-red-600 mx-auto rounded-full mb-6"></div>
+          <p className="text-gray-500 max-w-lg mx-auto">เลือกแพ็กเกจที่คุ้มค่าที่สุดสำหรับคุณ</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filteredPackages.map((pkg) => (
+            <div key={pkg.id} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col transform hover:-translate-y-3">
+              <div className="relative aspect-square overflow-hidden bg-gray-50 flex items-center justify-center p-6 cursor-zoom-in" onClick={() => setSelectedImg(pkg)}>
+                <img src={`${GITHUB_BASE_URL}${pkg.file}`} alt={pkg.label} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </div>
+              <div className="p-8 pt-4 flex flex-col flex-grow text-center">
+                <h3 className="text-2xl font-black text-gray-900 mb-4 group-hover:text-red-600 transition-colors">{pkg.label}</h3>
+                <a href={REGISTER_FORM_URL} target="_blank" className="mt-auto w-full bg-gray-900 hover:bg-red-600 text-white py-4 rounded-2xl text-sm font-black flex items-center justify-center gap-2 transition-all shadow-xl shadow-gray-200">
+                  <ClipboardList className="w-5 h-5" /> สนใจสมัครแพ็กเกจนี้
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Registration Steps */}
+      <section id="register" className="bg-red-600 py-24 px-4 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black mb-4">ขั้นตอนการสมัครแฟรนไชส์</h2>
+            <p className="text-red-100">ง่ายๆ เพียง 3 ขั้นตอน ก็เริ่มธุรกิจได้ทันที</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+             <div className="bg-white/10 p-10 rounded-[3rem] border border-white/10 flex flex-col items-center">
+                <div className="w-16 h-16 bg-yellow-400 text-red-900 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">1</div>
+                <h3 className="text-xl font-bold mb-4">กรอกข้อมูลสมัคร</h3>
+                <p className="text-red-100 text-sm">คลิกปุ่มสมัครเพื่อกรอกรายละเอียดผ่าน Google Form</p>
+             </div>
+             <div className="bg-white/10 p-10 rounded-[3rem] border border-white/10 flex flex-col items-center">
+                <div className="w-16 h-16 bg-yellow-400 text-red-900 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">2</div>
+                <h3 className="text-xl font-bold mb-4">รอเจ้าหน้าที่ติดต่อกลับ</h3>
+                <p className="text-red-100 text-sm">ทีมงานจะติดต่อแนะนำแพ็กเกจและเตรียมอุปกรณ์ให้ท่าน</p>
+             </div>
+             <div className="bg-white/10 p-10 rounded-[3rem] border border-white/10 flex flex-col items-center">
+                <div className="w-16 h-16 bg-yellow-400 text-red-900 rounded-2xl flex items-center justify-center text-2xl font-black mb-6">3</div>
+                <h3 className="text-xl font-bold mb-4">เปิดร้านสร้างรายได้</h3>
+                <p className="text-red-100 text-sm">รับอุปกรณ์ ติดตั้งระบบ และเริ่มให้บริการลูกค้าได้ทันที</p>
+             </div>
+          </div>
+          <div className="mt-16 text-center">
+            <a href={REGISTER_FORM_URL} target="_blank" className="inline-flex items-center gap-3 bg-white text-red-600 px-12 py-5 rounded-3xl font-black text-xl hover:bg-yellow-400 hover:text-red-900 transition-all shadow-2xl shadow-black/20">
+              <Send className="w-6 h-6" /> คลิกเพื่อสมัครแฟรนไชส์
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog/Articles Section */}
+      <section id="articles" className="bg-gray-50 py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-red-600 font-bold mb-4">
+                <BookOpen className="w-5 h-5" />
+                <span className="uppercase tracking-widest text-sm">Knowledge Base</span>
+              </div>
+              <h2 className="text-4xl font-black text-gray-900">สาระน่ารู้และบทความ</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ARTICLES.map((article) => (
+              <div key={article.id} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col group cursor-pointer">
+                <span className="text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full w-fit mb-6">{article.category}</span>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors leading-snug">{article.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">{article.desc}</p>
+                <div className="flex items-center justify-between pt-6 border-t border-gray-50 text-xs text-gray-400">
+                  <span>{article.date}</span>
+                  <span className="font-bold text-gray-900 flex items-center gap-1 group-hover:gap-2 transition-all">อ่านต่อ <ChevronRight className="w-3 h-3" /></span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 px-4 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="w-16 h-16 bg-red-100 text-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <HelpCircle className="w-8 h-8" />
+          </div>
+          <h2 className="text-3xl font-black text-gray-900 mb-2">คำถามที่พบบ่อย</h2>
+        </div>
+        <div className="space-y-4">
+          {FAQS.map((faq, index) => (
+            <div key={index} className="border border-gray-100 rounded-2xl bg-white shadow-sm overflow-hidden">
+              <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors font-bold text-gray-800">
+                <span>{faq.q}</span>
+                {openFaq === index ? <ChevronUp className="w-5 h-5 text-red-600" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+              </button>
+              {openFaq === index && (
+                <div className="p-6 pt-0 text-gray-600 bg-gray-50/30 border-t border-gray-50 text-sm leading-loose animate-in slide-in-from-top-2">
+                  {faq.a}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {selectedImg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-md" onClick={() => setSelectedImg(null)}></div>
+          <div className="relative max-w-6xl w-full max-h-full bg-white rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row animate-in zoom-in-95 duration-200">
+            <button className="absolute top-6 right-6 z-10 bg-black/20 hover:bg-black text-white p-2.5 rounded-full" onClick={() => setSelectedImg(null)}>
+              <X className="w-6 h-6" />
+            </button>
+            <div className="md:w-3/5 bg-gray-50 flex items-center justify-center p-12">
+              <img src={`${GITHUB_BASE_URL}${selectedImg.file}`} alt={selectedImg.label} className="max-w-full max-h-[75vh] object-contain drop-shadow-2xl" />
+            </div>
+            <div className="md:w-2/5 p-12 flex flex-col bg-white">
+              <h2 className="text-4xl font-black text-gray-900 mb-8 leading-tight">{selectedImg.label}</h2>
+              <div className="space-y-5 mb-12">
+                 {["ระบบขนส่งครบทุกค่ายทั่วประเทศ", "ระบบจ่ายบิล เติมเงินมือถือ และประกันภัย", "สอนการใช้งานฟรีจนกว่าจะเป็น", "อุปกรณ์ครบชุดพร้อมป้ายตกแต่งร้าน"].map((item, i) => (
+                   <div key={i} className="flex gap-3 items-center text-gray-600 font-medium">
+                      <div className="w-6 h-6 bg-red-50 text-red-600 rounded-full flex items-center justify-center shrink-0">
+                         <CheckCircle2 className="w-4 h-4" />
+                      </div>
+                      {item}
+                   </div>
+                 ))}
+              </div>
+              <div className="mt-auto space-y-4">
+                <a href={REGISTER_FORM_URL} target="_blank" className="w-full bg-yellow-400 text-red-900 py-5 rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-yellow-500 shadow-xl shadow-yellow-100 transition-all">
+                  <ClipboardList className="w-7 h-7" /> สมัครแพ็กเกจนี้ทันที
+                </a>
+                <a href={LINE_URL} target="_blank" className="w-full border-2 border-green-500 text-green-600 py-4 rounded-3xl font-bold flex items-center justify-center gap-2 hover:bg-green-50">
+                  <MessageCircle className="w-5 h-5" /> ปรึกษาผ่าน LINE
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="bg-gray-950 text-white pt-24 pb-12 px-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+          <div className="md:col-span-1">
+            <img src={LOGO_URL} alt="Paypoint" className="h-16 mb-8 brightness-0 invert" />
+            <p className="text-gray-400 text-sm leading-relaxed mb-8">
+              ผู้นำแฟรนไชส์จุดรับส่งพัสดุและบริการออนไลน์ มุ่งมั่นสร้างโอกาสทางธุรกิจให้คนไทย
+            </p>
+            <div className="flex gap-4">
+              <a href={FACEBOOK_URL} target="_blank" className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-blue-600 border border-white/10 transition-all"><Facebook className="w-6 h-6" /></a>
+              <a href={LINE_URL} target="_blank" className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-green-500 border border-white/10 transition-all text-green-500"><MessageCircle className="w-6 h-6" /></a>
+            </div>
+          </div>
+          
+          <div>
+            <h4 className="font-bold text-lg mb-8 uppercase tracking-widest text-red-500">Contact</h4>
+            <div className="space-y-6 text-gray-400">
+              <a href="tel:0618356622" className="block hover:text-white"><p className="text-[10px] uppercase font-black tracking-widest mb-1">Office</p><p className="text-lg font-bold">061-8356622</p></a>
+              <a href="tel:0868883656" className="block hover:text-white"><p className="text-[10px] uppercase font-black tracking-widest mb-1">Support</p><p className="text-lg font-bold">086-8883656</p></a>
+            </div>
+          </div>
+
+          <div className="md:col-span-2">
+            <h4 className="font-bold text-lg mb-8 uppercase tracking-widest text-red-500">Map</h4>
+            <div className="bg-white/5 p-3 rounded-[2.5rem] border border-white/10 overflow-hidden">
+              <div className="flex gap-4 px-4 py-3 items-start mb-2">
+                <MapPin className="text-red-500 w-6 h-6 mt-1" />
+                <p className="text-gray-300 text-sm leading-relaxed">104/48 หมู่ที่ 2 ถ.พระยาสัจจา ต.เสม็ด อ.เมืองชลบุรี จ.ชลบุรี 20000</p>
+              </div>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.188378345382!2d100.94926367572705!3d13.338555106725646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d4bb304d5c649%3A0x663ec79a97b4eaff!2z4LmB4Lif4Lij4LiZ4LmE4LiK4Liq4LmM4LmE4Lib4Lij4Lip4LiT4Li14Lii4LmM4LmA4Lit4LiB4LiK4LiZIChQQVlQT0lOVFNFUlZJQ0Up!5e0!3m2!1sth!2sth!4v1771823273703!5m2!1sth!2sth" width="100%" height="200" style={{ border: 0 }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Map"></iframe>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* PDPA Popup */}
+      {showPDPA && (
+        <div className="fixed bottom-0 left-0 right-0 z-[60] p-4 md:p-6 animate-in slide-in-from-bottom-full duration-500">
+          <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-xl border border-gray-200 shadow-2xl rounded-[2rem] p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="flex-grow">
+              <h4 className="text-lg font-black text-gray-900 mb-1">นโยบายความเป็นส่วนตัว (PDPA)</h4>
+              <p className="text-gray-500 text-sm">เราใช้คุกกี้เพื่อพัฒนาประสบการณ์ที่ดีในการใช้เว็บไซต์ของคุณ</p>
+            </div>
+            <button onClick={() => setShowPDPA(false)} className="bg-gray-900 text-white px-8 py-3 rounded-2xl text-sm font-black hover:bg-red-600 transition-all">ยอมรับทั้งหมด</button>
+          </div>
+        </div>
+      )}
+      
+      {/* Sticky Mobile Contact */}
+      <div className="fixed bottom-6 right-6 z-40 md:hidden flex flex-col gap-3">
+         <a href={REGISTER_FORM_URL} target="_blank" className="w-14 h-14 bg-yellow-400 text-red-900 rounded-full shadow-2xl flex items-center justify-center border-2 border-white font-black animate-bounce">
+            <ClipboardList className="w-7 h-7" />
+         </a>
+         <a href={LINE_URL} target="_blank" className="w-14 h-14 bg-green-500 text-white rounded-full shadow-2xl flex items-center justify-center border-2 border-white">
+            <MessageCircle className="w-7 h-7" />
+         </a>
+      </div>
+    </div>
+  );
+}
