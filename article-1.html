@@ -115,25 +115,57 @@
     <!-- ================= Article Content ================= -->
     <main class="py-12 px-4 sm:px-6">
         <article class="max-w-4xl mx-auto bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
-            <!-- Article Header -->
-            <div class="bg-red-50 p-8 md:p-12 text-center border-b border-red-100">
-                <span class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-6">ธุรกิจ & การลงทุน</span>
-                <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-6">
-                    5 เหตุผลทำไม 'แฟรนไชส์ไปรษณีย์' <br class="hidden md:block" /> คือธุรกิจดาวรุ่งปี 2026
-                </h1>
-                <div class="flex items-center justify-center gap-4 text-sm text-gray-500 font-medium">
-                    <div class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4"></i> 15 กุมภาพันธ์ 2026</div>
-                    <div class="flex items-center gap-1"><i data-lucide="user" class="w-4 h-4"></i> Paypoint Service</div>
-                    <div class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4"></i> อ่าน 3 นาที</div>
+            <!-- Article Header (อัปเดตใหม่ให้ดูน่าสนใจ มีปุ่มแชร์) -->
+            <div class="relative bg-gradient-to-br from-red-50 to-white p-8 md:p-16 text-center border-b border-red-100 overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-red-100 rounded-full blur-3xl opacity-50"></div>
+                <div class="relative z-10">
+                    <span class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-sm">ธุรกิจ & การลงทุน</span>
+                    <h1 class="text-3xl md:text-5xl font-black text-gray-900 leading-tight mb-8">
+                        5 เหตุผลทำไม 'แฟรนไชส์ไปรษณีย์' <br class="hidden md:block" /> คือธุรกิจดาวรุ่งปี 2026
+                    </h1>
+                    
+                    <!-- Author & Share Info -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
+                        <div class="flex items-center gap-3">
+                            <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/logo-paypoint-1.png" alt="Paypoint Service" class="w-11 h-11 rounded-full bg-white p-1 border border-gray-200 shadow-sm object-contain">
+                            <div class="text-left">
+                                <p class="text-sm font-bold text-gray-900">Paypoint Service</p>
+                                <p class="text-xs text-gray-500 font-medium mt-0.5">15 ก.พ. 2026 • เวลาอ่าน 3 นาที</p>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
+                        
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-medium text-gray-500 mr-2">แชร์:</span>
+                            <button class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors" title="แชร์ไปที่ Facebook"><i data-lucide="facebook" class="w-4 h-4"></i></button>
+                            <button class="w-9 h-9 rounded-full bg-green-50 text-green-600 flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors" title="แชร์ไปที่ LINE"><i data-lucide="message-circle" class="w-4 h-4"></i></button>
+                            <button class="w-9 h-9 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center hover:bg-gray-600 hover:text-white transition-colors" title="คัดลอกลิงก์" onclick="navigator.clipboard.writeText(window.location.href); alert('คัดลอกลิงก์แล้ว!');"><i data-lucide="link" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Article Body (SEO Optimized Content) -->
             <div class="p-8 md:p-12 prose prose-lg prose-red max-w-none text-gray-600 leading-loose">
                 
-                <p class="text-xl text-gray-800 font-medium mb-8">
-                    ในยุคที่การซื้อขายออนไลน์กลายเป็นส่วนหนึ่งของชีวิตประจำวัน ธุรกิจที่เติบโตควบคู่ไปกับ E-Commerce อย่างหลีกเลี่ยงไม่ได้คือ <strong>"ธุรกิจขนส่งและจุดรับส่งพัสดุ"</strong> หากคุณกำลังมองหาอาชีพเสริมหรือธุรกิจส่วนตัวที่ลงทุนน้อยแต่ความเสี่ยงต่ำ นี่คือ 5 เหตุผลว่าทำไมแฟรนไชส์ไปรษณีย์ถึงน่าจับตามองที่สุดในปี 2026
+                <p class="text-xl text-gray-800 font-medium mb-10 text-center leading-relaxed">
+                    ในยุคที่การซื้อขายออนไลน์กลายเป็นส่วนหนึ่งของชีวิตประจำวัน ธุรกิจที่เติบโตควบคู่ไปกับ E-Commerce อย่างหลีกเลี่ยงไม่ได้คือ <strong class="text-red-600">"ธุรกิจขนส่งและจุดรับส่งพัสดุ"</strong> หากคุณกำลังมองหาอาชีพเสริมหรือธุรกิจส่วนตัวที่ลงทุนน้อยแต่ความเสี่ยงต่ำ นี่คือ 5 เหตุผลว่าทำไมแฟรนไชส์ไปรษณีย์ถึงน่าจับตามองที่สุดในปี 2026
                 </p>
+
+                <!-- เพิ่มกล่องสารบัญ (Table of Contents) -->
+                <div class="bg-gray-50 p-6 md:p-8 rounded-3xl mb-12 border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2 mt-0">
+                        <i data-lucide="list" class="w-5 h-5 text-red-600"></i> เนื้อหาในบทความนี้
+                    </h3>
+                    <ul class="space-y-3 text-gray-600 text-sm md:text-base font-medium m-0 p-0 list-none">
+                        <li><a href="#reason-1" class="hover:text-red-600 hover:underline flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div> 1. การเติบโตที่ไม่หยุดยั้งของ E-Commerce</a></li>
+                        <li><a href="#reason-2" class="hover:text-red-600 hover:underline flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div> 2. ลงทุนเริ่มต้นหลักพัน คืนทุนไว</a></li>
+                        <li><a href="#reason-3" class="hover:text-red-600 hover:underline flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div> 3. ให้บริการครบทุกค่ายขนส่งในที่เดียว</a></li>
+                        <li><a href="#reason-4" class="hover:text-red-600 hover:underline flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div> 4. สร้างรายได้หลายช่องทาง (Multi-Service)</a></li>
+                        <li><a href="#reason-5" class="hover:text-red-600 hover:underline flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-red-400 shrink-0"></div> 5. ใช้พื้นที่บ้านให้เกิดรายได้ (Work From Home)</a></li>
+                    </ul>
+                </div>
 
                 <!-- ภาพประกอบ 1 -->
                 <figure class="my-10">
@@ -142,16 +174,16 @@
                 </figure>
 
                 <!-- H2 is critical for SEO subtopics -->
-                <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4 flex items-center gap-2">
-                    <span class="bg-yellow-400 text-red-900 w-8 h-8 rounded-full flex items-center justify-center text-lg">1</span> 
+                <h2 id="reason-1" class="text-2xl font-bold text-gray-900 mt-12 mb-4 flex items-center gap-3 scroll-mt-24">
+                    <span class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-red-900 w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm shrink-0">1</span> 
                     การเติบโตที่ไม่หยุดยั้งของ E-Commerce
                 </h2>
                 <p>
                     พฤติกรรมผู้บริโภคเปลี่ยนไปซื้อของออนไลน์แทบจะ 100% พ่อค้าแม่ค้าออนไลน์เพิ่มขึ้นทุกวัน ทำให้ความต้องการในการส่งพัสดุพุ่งสูงขึ้นอย่างต่อเนื่อง การมีร้านรับส่งพัสดุในชุมชน ใกล้บ้าน หรือใกล้ตลาด จะกลายเป็นจุดยุทธศาสตร์ที่ดึงดูดพ่อค้าแม่ค้าออนไลน์ให้มาใช้บริการได้อย่างสม่ำเสมอ
                 </p>
 
-                <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4 flex items-center gap-2">
-                    <span class="bg-yellow-400 text-red-900 w-8 h-8 rounded-full flex items-center justify-center text-lg">2</span> 
+                <h2 id="reason-2" class="text-2xl font-bold text-gray-900 mt-12 mb-4 flex items-center gap-3 scroll-mt-24">
+                    <span class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-red-900 w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm shrink-0">2</span> 
                     ลงทุนเริ่มต้นหลักพัน คืนทุนไว
                 </h2>
                 <p>
@@ -159,21 +191,21 @@
                 </p>
 
                 <!-- ภาพประกอบ 2 -->
-                <figure class="my-10">
-                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1890.jpg" alt="แพ็กเกจแฟรนไชส์ไปรษณีย์ 1890 บาท จาก Paypoint" class="w-full rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-                    <figcaption class="text-center text-sm text-gray-400 mt-3">ตัวอย่างแพ็กเกจสุดคุ้ม 1,890 บาท ได้ครบทั้งระบบและอุปกรณ์</figcaption>
+                <figure class="my-10 bg-gray-50 p-4 rounded-3xl border border-gray-100">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1890.jpg" alt="แพ็กเกจแฟรนไชส์ไปรษณีย์ 1890 บาท จาก Paypoint" class="w-full rounded-2xl shadow-sm">
+                    <figcaption class="text-center text-sm text-gray-500 mt-3 font-medium">ตัวอย่างแพ็กเกจสุดคุ้ม 1,890 บาท ได้ครบทั้งระบบและอุปกรณ์</figcaption>
                 </figure>
 
-                <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4 flex items-center gap-2">
-                    <span class="bg-yellow-400 text-red-900 w-8 h-8 rounded-full flex items-center justify-center text-lg">3</span> 
+                <h2 id="reason-3" class="text-2xl font-bold text-gray-900 mt-12 mb-4 flex items-center gap-3 scroll-mt-24">
+                    <span class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-red-900 w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm shrink-0">3</span> 
                     ให้บริการครบทุกค่ายขนส่งในที่เดียว
                 </h2>
                 <p>
-                    ลูกค้าแต่ละคนมีความชอบบริษัทขนส่งที่แตกต่างกัน ระบบของแฟรนไชส์รุ่นใหม่จะรวบรวมขนส่งชั้นนำไว้ในระบบเดียว ไม่ว่าจะเป็น <span class="font-bold text-red-600">ไปรษณีย์ไทย, Kerry, Flash, J&T, Best Express</span> ทำให้ลูกค้าไม่ต้องเดินทางไปหลายที่ มาที่ร้านคุณ "ที่เดียวครบจบทุกการส่ง" เพิ่มโอกาสในการทำกำไรได้มากขึ้น
+                    ลูกค้าแต่ละคนมีความชอบบริษัทขนส่งที่แตกต่างกัน ระบบของแฟรนไชส์รุ่นใหม่จะรวบรวมขนส่งชั้นนำไว้ในระบบเดียว ไม่ว่าจะเป็น <span class="font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded">ไปรษณีย์ไทย, Kerry, Flash, J&T, Best Express</span> ทำให้ลูกค้าไม่ต้องเดินทางไปหลายที่ มาที่ร้านคุณ "ที่เดียวครบจบทุกการส่ง" เพิ่มโอกาสในการทำกำไรได้มากขึ้น
                 </p>
 
-                <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4 flex items-center gap-2">
-                    <span class="bg-yellow-400 text-red-900 w-8 h-8 rounded-full flex items-center justify-center text-lg">4</span> 
+                <h2 id="reason-4" class="text-2xl font-bold text-gray-900 mt-12 mb-4 flex items-center gap-3 scroll-mt-24">
+                    <span class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-red-900 w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm shrink-0">4</span> 
                     สร้างรายได้หลายช่องทาง (Multi-Service)
                 </h2>
                 <p>
@@ -181,26 +213,65 @@
                 </p>
 
                 <!-- ภาพประกอบ 3 -->
-                <figure class="my-10">
-                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1990.jpg" alt="แพ็กเกจแฟรนไชส์ไปรษณีย์ 1990 บาท พร้อมระบบเติมเงิน" class="w-full rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-                    <figcaption class="text-center text-sm text-gray-400 mt-3">แพ็กเกจ 1,990 บาท รับเพิ่มทันทีระบบเติมเงินและจ่ายบิลออนไลน์</figcaption>
+                <figure class="my-10 bg-gray-50 p-4 rounded-3xl border border-gray-100">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1990.jpg" alt="แพ็กเกจแฟรนไชส์ไปรษณีย์ 1990 บาท พร้อมระบบเติมเงิน" class="w-full rounded-2xl shadow-sm">
+                    <figcaption class="text-center text-sm text-gray-500 mt-3 font-medium">แพ็กเกจ 1,990 บาท รับเพิ่มทันทีระบบเติมเงินและจ่ายบิลออนไลน์</figcaption>
                 </figure>
 
-                <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-4 flex items-center gap-2">
-                    <span class="bg-yellow-400 text-red-900 w-8 h-8 rounded-full flex items-center justify-center text-lg">5</span> 
+                <h2 id="reason-5" class="text-2xl font-bold text-gray-900 mt-12 mb-4 flex items-center gap-3 scroll-mt-24">
+                    <span class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-red-900 w-10 h-10 rounded-xl flex items-center justify-center text-xl shadow-sm shrink-0">5</span> 
                     ใช้พื้นที่บ้านให้เกิดรายได้ (Work From Home)
                 </h2>
                 <p>
                     ไม่จำเป็นต้องเช่าพื้นที่ทำเลทองราคาแพง คุณสามารถใช้พื้นที่หน้าบ้าน พื้นที่ว่างในร้านขายของชำ หรือออฟฟิศเดิมที่คุณมีอยู่แล้วในการเปิดจุดรับส่งพัสดุได้เลย ช่วยประหยัดต้นทุนคงที่ (Fixed Cost) ไปได้มหาศาล
                 </p>
 
+                <!-- เพิ่มกล่องไฮไลต์ (Highlight Box) สรุปใจความสำคัญ -->
+                <div class="my-12 bg-gradient-to-r from-red-600 to-red-800 p-8 md:p-10 rounded-[2rem] text-white shadow-xl flex flex-col sm:flex-row items-start gap-6 relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 opacity-10"><i data-lucide="trending-up" class="w-48 h-48"></i></div>
+                    <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-sm z-10">
+                        <i data-lucide="lightbulb" class="w-8 h-8 text-yellow-300"></i>
+                    </div>
+                    <div class="z-10">
+                        <h4 class="text-2xl font-black text-yellow-300 mb-3 mt-0">รู้หรือไม่?</h4>
+                        <p class="text-red-50 text-sm md:text-base leading-relaxed mb-0">มูลค่าตลาด E-Commerce ของไทยยังคงเติบโตอย่างต่อเนื่อง การมีจุดรับส่งพัสดุใกล้แหล่งชุมชน ไม่ใช่แค่การอำนวยความสะดวก แต่เปรียบเสมือน <strong>"การเปิดหน้าร้านรับทรัพย์"</strong> ที่ลงทุนครั้งเดียวจบ ไม่มีค่าธรรมเนียมรายปี!</p>
+                    </div>
+                </div>
+
                 <hr class="my-10 border-gray-200" />
 
-                <div class="bg-yellow-50 rounded-2xl p-8 border border-yellow-200 shadow-sm">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">สรุป</h3>
-                    <p class="mb-0 text-sm leading-relaxed">
+                <div class="bg-yellow-50 rounded-2xl p-8 border border-yellow-200 shadow-sm text-center">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 mt-0">สรุป</h3>
+                    <p class="mb-0 text-sm leading-relaxed text-gray-700">
                         ธุรกิจแฟรนไชส์จุดรับส่งพัสดุ เป็นธุรกิจที่เกาะกระแส E-Commerce ลงทุนน้อย ทำง่าย และมีความเสี่ยงต่ำ หากคุณสนใจเริ่มต้นธุรกิจนี้ <strong>Paypoint Service</strong> ยินดีให้คำปรึกษาและดูแลคุณตั้งแต่เริ่มต้นจนเปิดร้านได้สำเร็จ ด้วยแพ็กเกจที่หลากหลายพร้อมตอบโจทย์ทุกคน
                     </p>
+                </div>
+            </div>
+
+            <!-- ส่วนเพิ่ม: บทความที่น่าสนใจ (Related Articles) ก่อนปุ่ม CTA -->
+            <div class="bg-gray-50 p-8 md:p-12 border-t border-b border-gray-100">
+                <h3 class="text-xl font-black text-gray-900 mb-6 flex items-center gap-2">
+                    <i data-lucide="book-open" class="text-red-600 w-5 h-5"></i> อ่านบทความอื่นต่อ
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="#" class="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all flex gap-4 items-center">
+                        <div class="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                            <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1890.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full uppercase">เทคนิคการขาย</span>
+                            <h4 class="text-sm font-bold text-gray-900 mt-1.5 line-clamp-2 group-hover:text-red-600 transition-colors">เปิดร้านรับส่งพัสดุอย่างไรให้คืนทุนไวภายใน 3 เดือน</h4>
+                        </div>
+                    </a>
+                    <a href="#" class="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all flex gap-4 items-center">
+                        <div class="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                            <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1990.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded-full uppercase">ความรู้ระบบ</span>
+                            <h4 class="text-sm font-bold text-gray-900 mt-1.5 line-clamp-2 group-hover:text-red-600 transition-colors">รวมทุกบริการในที่เดียว: จุดเด่นของระบบ Paypoint Service</h4>
+                        </div>
+                    </a>
                 </div>
             </div>
 
