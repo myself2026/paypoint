@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แพ็คเกจเริ่มต้นธุรกิจ PayPoint - เลือกชุดที่ใช่สำหรับคุณ</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="รวมแพ็คเกจเปิดจุดรับชำระเงิน PayPoint เริ่มต้นง่ายๆ ตั้งแต่หลักพันไปจนถึงชุด POS แบบจัดเต็ม พร้อมระบบเคาน์เตอร์เซอร์วิสครบวงจร">
+    <meta name="keywords" content="แพ็คเกจ PayPoint, ราคาเครื่อง POS, เปิดร้านรับจ่ายบิล, เครื่องคิดเงิน, ระบบเคาน์เตอร์เซอร์วิส">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
+        .glass-morphism { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .package-card { transition: all 0.3s ease; }
+        .package-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="https://myself2026.github.io/paypoint/" class="flex items-center gap-3">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/logo-paypoint-1.png" alt="PayPoint Logo" class="h-12 w-auto">
+                </a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="https://myself2026.github.io/paypoint/" class="hover:text-blue-600 transition">หน้าหลัก</a>
+                    <a href="#" class="text-blue-600 font-bold transition">แพ็คเกจสินค้า</a>
+                    <a href="https://myself2026.github.io/paypoint/#articles" class="hover:text-blue-600 transition">บทความ</a>
+                    <a href="#contact-info" class="hover:text-blue-600 transition">ติดต่อเรา</a>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition shadow-md">
+                    สมัครฟรี
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">แพ็คเกจเริ่มต้นธุรกิจ PayPoint</h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                เลือกรูปแบบการลงทุนที่เหมาะสมกับธุรกิจของคุณที่สุด ไม่ว่าจะเป็นร้านค้าขนาดเล็ก หรือธุรกิจขนาดใหญ่ เรามีอุปกรณ์และระบบพร้อมดูแลคุณ
+            </p>
+        </div>
+    </div>
+
+    <!-- Promo Section: โปรย้ายค่าย -->
+    <section class="py-12 px-4 -mt-8 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-[2rem] shadow-2xl overflow-hidden relative border-4 border-white">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-white opacity-10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-60 h-60 bg-white opacity-10 rounded-full blur-2xl"></div>
+                
+                <div class="p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 relative z-10">
+                    <div class="md:w-1/2 text-white">
+                        <div class="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-1.5 rounded-full mb-6 shadow-md animate-bounce">
+                            🔥 สิทธิพิเศษเฉพาะคุณ
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">โปรย้ายค่าย!<br>มาใช้ PayPoint</h2>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed">
+                            มีเครื่อง POS หรือระบบเดิมอยู่แล้ว? ย้ายมาใช้ระบบ PayPoint วันนี้ รับข้อเสนอพิเศษ ฟรีค่าแรกเข้า! ซอฟต์แวร์เสถียร ใช้งานง่าย พร้อมทีมซัพพอร์ตดูแลดุจครอบครัว
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://lin.ee/63tTe6Z" target="_blank" class="bg-[#00B900] hover:bg-[#009900] text-white font-bold py-3.5 px-8 rounded-xl transition flex items-center justify-center gap-2 shadow-lg hover:scale-105">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i> ทักแชทรับสิทธิ์
+                            </a>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="bg-white text-blue-800 hover:bg-blue-50 font-bold py-3.5 px-8 rounded-xl transition shadow-lg hover:scale-105">
+                                กรอกฟอร์มให้ติดต่อกลับ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 w-full relative">
+                        <div class="absolute inset-0 bg-blue-400 rounded-3xl transform rotate-3 scale-105 opacity-30"></div>
+                        <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/0.jpg" alt="โปรย้ายค่าย PayPoint" class="w-full h-auto object-cover rounded-3xl relative z-10 shadow-2xl border-4 border-white/10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Catalog Section -->
+    <section class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Category Title -->
+            <div class="flex items-center gap-3 mb-10">
+                <div class="bg-blue-600 p-2 rounded-lg text-white">
+                    <i data-lucide="package"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">เลือกแพ็คเกจที่ใช่สำหรับคุณ</h2>
+            </div>
+
+            <!-- Grid Layout สำหรับแพ็คเกจ -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- Package 999 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">
+                        ขายดี
+                    </div>
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/999.jpg" alt="แพ็คเกจ 999" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุดเริ่มต้นสุดคุ้ม</h3>
+                        <p class="text-slate-500 text-sm mb-4">เหมาะสำหรับผู้เริ่มต้น ทดลองระบบ</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿999.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 1890 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1890.jpg" alt="แพ็คเกจ 1890" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุดมินิมาร์ท ไซส์ S</h3>
+                        <p class="text-slate-500 text-sm mb-4">เพิ่มบริการรับชำระบิลหน้าร้านง่ายๆ</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿1,890.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 1990 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/1990.jpg" alt="แพ็คเกจ 1990" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุดมินาร์ท ไซส์ M</h3>
+                        <p class="text-slate-500 text-sm mb-4">อัปเกรดความสะดวกสบายในการใช้งาน</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿1,990.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2600 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-sm">
+                        ยอดนิยม
+                    </div>
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/2600.jpg" alt="แพ็คเกจ 2600" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุดพร้อมพิมพ์ใบเสร็จ</h3>
+                        <p class="text-slate-500 text-sm mb-4">เพิ่มความน่าเชื่อถือด้วยสลิปใบเสร็จรับเงิน</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿2,600.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-blue-200">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3000 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/3000.jpg" alt="แพ็คเกจ 3000" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุดสแกนเนอร์ครบเซ็ต</h3>
+                        <p class="text-slate-500 text-sm mb-4">ทำงานไวขึ้นด้วยเครื่องสแกนบาร์โค้ด</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿3,000.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3900 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/3900.jpg" alt="แพ็คเกจ 3900" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุด POS อัจฉริยะ S</h3>
+                        <p class="text-slate-500 text-sm mb-4">จัดการหน้าร้านได้อย่างมีประสิทธิภาพ</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿3,900.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 4900 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/4900.jpg" alt="แพ็คเกจ 4900" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุด POS อัจฉริยะ M</h3>
+                        <p class="text-slate-500 text-sm mb-4">หน้าจอใหญ่ ใช้งานง่าย พร้อมลิ้นชัก</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿4,900.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 6999 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/6999.jpg" alt="แพ็คเกจ 6999" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุด POS ธุรกิจ L</h3>
+                        <p class="text-slate-500 text-sm mb-4">ตอบโจทย์ร้านค้าระดับกลางถึงใหญ่</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿6,999.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 9990 -->
+                <div class="bg-white rounded-3xl p-4 border border-slate-100 package-card flex flex-col h-full">
+                    <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/9990.jpg" alt="แพ็คเกจ 9990" class="w-full h-64 object-cover rounded-2xl mb-4">
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">ชุด POS พรีเมียม XL</h3>
+                        <p class="text-slate-500 text-sm mb-4">ดีไซน์ทันสมัย เครื่องทำงานเร็วสเปคสูง</p>
+                        <div class="mt-auto pt-4 border-t border-slate-100">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-4">฿9,990.-</div>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition">
+                                สนใจแพ็คเกจนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 59990 -->
+                <div class="bg-white rounded-3xl p-4 border-blue-500 border-2 package-card flex flex-col h-full md:col-span-2 lg:col-span-3 xl:col-span-3 relative overflow-hidden bg-blue-50/50">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-sm font-bold px-6 py-2 rounded-bl-2xl z-10 shadow-md">
+                        แฟรนไชส์เต็มรูปแบบ
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-6 h-full">
+                        <img src="https://raw.githubusercontent.com/myself2026/paypoint/refs/heads/main/59990.jpg" alt="แพ็คเกจ 59990" class="w-full md:w-1/2 h-64 md:h-auto object-cover rounded-2xl">
+                        <div class="flex-1 flex flex-col justify-center py-4 pr-4">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">ชุดแฟรนไชส์ KIOSK จอสัมผัส (Ultimate)</h3>
+                            <p class="text-slate-600 mb-6 line-clamp-3">ระบบตู้คีออสจอสัมผัสขนาดใหญ่ เหมาะสำหรับตั้งในศูนย์การค้า, ปั๊มน้ำมัน หรือทำเลคนพลุกพล่าน ลูกค้าสามารถทำรายการได้ด้วยตัวเองครบจบในตู้เดียว พร้อมระบบจัดการหลังบ้านระดับองค์กร</p>
+                            <div class="mt-auto pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <div class="text-4xl font-extrabold text-blue-600">฿59,990.-</div>
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" target="_blank" class="w-full sm:w-auto text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-xl transition shadow-lg shadow-blue-200">
+                                    สมัครแพ็คเกจนี้
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Banner -->
+    <section class="py-12 bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-4">ยังไม่แน่ใจว่าจะเลือกแพ็คเกจไหนดี?</h3>
+            <p class="text-slate-400 mb-8">ให้ผู้เชี่ยวชาญของเราช่วยแนะนำแพ็คเกจที่เหมาะสมกับธุรกิจและงบประมาณของคุณ ฟรี! ไม่มีค่าใช้จ่าย</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:0868883656" class="bg-white text-slate-900 hover:bg-slate-100 font-bold py-3 px-8 rounded-full transition flex items-center justify-center gap-2">
+                    <i data-lucide="phone-call" class="w-5 h-5"></i> โทรปรึกษาด่วน
+                </a>
+                <a href="https://lin.ee/63tTe6Z" target="_blank" class="bg-[#00B900] hover:bg-[#009900] text-white font-bold py-3 px-8 rounded-full transition flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> ทักแชทผ่าน LINE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section (จากหน้าเดิม) -->
+    <section id="contact-info" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">ติดต่อ PAYPOINTSERVICE</h2>
+                <p class="text-slate-600 mb-8">
+                    สามารถแวะเข้ามาชมเครื่อง POS จริง ทดลองใช้งานระบบ และปรึกษาได้ที่สำนักงานของเรา
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-blue-50 p-3 rounded-full text-blue-600">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">ที่อยู่สำนักงานใหญ่</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed">104/48 หมู่ที่ 2 ถ.พระยาสัจจา<br>ต.เสม็ด อ.เมืองชลบุรี จ.ชลบุรี 20000</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="bg-green-50 p-3 rounded-full text-green-600">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">เบอร์โทรศัพท์ติดต่อ</h4>
+                            <p class="text-slate-600 text-sm">โทร Office: <a href="tel:0618356622" class="hover:text-blue-600 transition">061-835-6622</a></p>
+                            <p class="text-slate-600 text-sm">Support: <a href="tel:0868883656" class="hover:text-blue-600 transition">086-888-3656</a></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="bg-green-50 p-3 rounded-full text-[#00B900]">
+                            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.938 8.89 9.382 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.226-3.812 2.226-5.992z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">LINE Official Account</h4>
+                            <p class="text-slate-600 text-sm">@ao22</p>
+                            <a href="https://lin.ee/63tTe6Z" target="_blank" class="text-blue-600 text-sm hover:underline mt-1 inline-block">เพิ่มเพื่อน Line คลิกที่นี่</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 w-full">
+                <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-slate-100 h-[400px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.188378345382!2d100.94926367572705!3d13.338555106725646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d4bb304d5c649%3A0x663ec79a97b4eaff!2z4LmB4Lif4Lij4LiZ4LmE4LiK4Liq4LmM4LmE4Lib4Lij4Lip4LiT4Li14Lii4LmM4LmA4Lit4LiB4LiK4LiZIChQQVlQT0lOVFNFUlZJQ0Up!5e0!3m2!1sth!2sth!4v1771826005778!5m2!1sth!2sth" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-500 py-8 px-4 text-center text-sm border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 PAYPOINTSERVICE. All rights reserved.</p>
+            <div class="flex gap-4 justify-center">
+                <a href="https://myself2026.github.io/paypoint/" class="hover:text-white transition">หน้าหลัก</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLzcfxzr15pbp-Ctbo_ynY9ksB65lDOKHYsM8amc3COnPB7A/viewform" class="hover:text-white transition">สมัครใช้บริการ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
